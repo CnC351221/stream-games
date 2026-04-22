@@ -29,13 +29,17 @@
     ],
     "mac": {
       "category": "public.app-category.games",
+      "icon": "Img/png/PeekH_512x512.png",
       "identity": null,
       "hardenedRuntime": false,
-      "executableName": "stream-games",
       "target": [
         {
           "target": "dmg",
-          "arch": "x64"
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64", "arm64"]
         }
       ]
     },
@@ -61,6 +65,7 @@
   },
   "devDependencies": {
     "@electron/rebuild": "^4.0.4",
+    "dmg-license": "^1.0.11",
     "electron": "^40.4.1",
     "electron-builder": "^25.1.8"
   }
