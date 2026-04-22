@@ -46,6 +46,8 @@ jobs:
         run: npm run build:${{ matrix.platform }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+          CSC_LINK: ""
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

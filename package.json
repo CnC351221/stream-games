@@ -1,7 +1,9 @@
 {
   "name": "stream-games",
   "version": "1.0.0",
-  "description": "Stream Games — Интерактивные игры для стримов",
+  "description": "Stream Games - Interactive Stream Games",
+  "author": "Stream Games Developer",
+  "license": "MIT",
   "main": "electron-launcher.js",
   "scripts": {
     "start": "node --no-deprecation server.js",
