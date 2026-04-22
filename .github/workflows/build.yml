@@ -1,12 +1,14 @@
 name: Build Stream Games
 
 on:
-  # Запускается вручную из GitHub
-  workflow_dispatch:
-  # Или при создании тега (версии)
+  # Запускается при пуше в основную ветку
   push:
+    branches:
+      - main
     tags:
       - 'v*'
+  # Запускается вручную из GitHub
+  workflow_dispatch:
 
 jobs:
   build:
