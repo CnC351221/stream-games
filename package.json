@@ -29,12 +29,14 @@
     ],
     "mac": {
       "category": "public.app-category.games",
-      "icon": "Img/png/PeekH_512x512.png",
       "identity": null,
       "hardenedRuntime": false,
+      "executableName": "stream-games",
       "target": [
-        "dmg",
-        "zip"
+        {
+          "target": "dmg",
+          "arch": "x64"
+        }
       ]
     },
     "win": {
