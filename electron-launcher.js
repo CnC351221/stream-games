@@ -1,37 +1,43 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const { fork } = require('child_process');
+const http = require('http');
 
 let mainWindow;
 let serverProcess;
+const PORT = 3000;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: 1280,
         height: 720,
-        title: "Stream Games Standalone",
-        icon: path.join(__dirname, 'Img', 'icon.png'), // Если есть иконка
+        title: "Stream Games",
+        backgroundColor: '#0f172a', // Тёмный фон до загрузки
+        show: false, // Покажем, когда загрузится
+        icon: path.join(__dirname, 'Img', 'png', 'PeekH_512x512.png'),
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true
         }
     });
 
-    // Загружаем локальный сервер (ждем 2 секунды, чтобы Node.js успел подняться)
-    setTimeout(() => {
-        mainWindow.loadURL('http://localhost:3000');
-    }, 2000);
+    // Функция для проверки готовности сервера
+    const checkServer = () => {
+        http.get(`http://localhost:${PORT}`, (res) => {
+            console.log('✅ Сервер готов, загружаем UI...');
+            mainWindow.loadURL(`http://localhost:${PORT}`);
+        }).on('error', () => {
+            console.log('⏳ Ожидание запуска сервера...');
+            setTimeout(checkServer, 500);
+        });
+    };
 
-    // Устанавливаем масштаб 80% (0.8)
+    checkServer();
+
+    // Устанавливаем масштаб 80% и показываем окно
     mainWindow.webContents.on('did-finish-load', () => {
         mainWindow.webContents.setZoomFactor(0.8);
-    });
-
-    // Если сервер еще не поднялся, пробуем перезагрузить через секунду
-    mainWindow.webContents.on('did-fail-load', () => {
-        setTimeout(() => {
-            mainWindow.loadURL('http://localhost:3000');
-        }, 1000);
+        mainWindow.show();
     });
 
     mainWindow.on('closed', function () {
@@ -60,6 +66,7 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', function () {
+    // На Mac приложение обычно остается активным, пока пользователь не выйдет (Cmd+Q)
     if (process.platform !== 'darwin') {
         if (serverProcess) serverProcess.kill();
         app.quit();
@@ -69,3 +76,9 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
     if (mainWindow === null) createWindow();
 });
+
+// Убиваем сервер при выходе
+app.on('before-quit', () => {
+    if (serverProcess) serverProcess.kill();
+});
+
