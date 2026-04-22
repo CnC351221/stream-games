@@ -39,6 +39,10 @@ jobs:
           npm_config_runtime: electron
           npm_config_target: 40.4.1
 
+      - name: Install Mac specific dependencies
+        if: matrix.platform == 'mac'
+        run: npm install dmg-license --no-save
+
       - name: Rebuild native modules
         run: npm run rebuild || true # Игнорируем ошибки опциональных модулей
 
