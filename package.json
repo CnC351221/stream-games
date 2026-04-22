@@ -9,7 +9,8 @@
     "build:win": "electron-builder --win",
     "build:mac": "electron-builder --mac",
     "build:linux": "electron-builder --linux",
-    "build:all": "electron-builder --win --mac --linux"
+    "build:all": "electron-builder --win --mac --linux",
+    "rebuild": "electron-rebuild"
   },
   "build": {
     "appId": "com.streamgames.app",
@@ -17,6 +18,7 @@
     "directories": {
       "output": "dist"
     },
+    "npmRebuild": false,
     "files": [
       "**/*",
       "!dist/**",
@@ -52,6 +54,7 @@
     "youtube-chat": "^2.2.0"
   },
   "devDependencies": {
+    "@electron/rebuild": "^4.0.4",
     "electron": "^40.4.1",
     "electron-builder": "^25.1.8"
   }
