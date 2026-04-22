@@ -1,0 +1,58 @@
+{
+  "name": "stream-games",
+  "version": "1.0.0",
+  "description": "Stream Games — Интерактивные игры для стримов",
+  "main": "electron-launcher.js",
+  "scripts": {
+    "start": "node --no-deprecation server.js",
+    "app": "electron electron-launcher.js",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder --win --mac --linux"
+  },
+  "build": {
+    "appId": "com.streamgames.app",
+    "productName": "Stream Games",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!.git/**",
+      "!.github/**"
+    ],
+    "mac": {
+      "category": "public.app-category.games",
+      "icon": "Img/png/PeekH_512x512.png",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "icon": "Img/ico/PeekH_256x256.ico",
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "icon": "Img/png/PeekH_512x512.png",
+      "target": [
+        "AppImage"
+      ]
+    }
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "tiktok-live-connector": "^1.1.10",
+    "tmi.js": "^1.8.5",
+    "youtube-chat": "^2.2.0"
+  },
+  "devDependencies": {
+    "electron": "^40.4.1",
+    "electron-builder": "^25.1.8"
+  }
+}

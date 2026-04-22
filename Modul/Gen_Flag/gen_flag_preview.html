@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flag Preview</title>
+    <style>
+        body { 
+            background: #1a1a1a; 
+            color: #fff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 15px; 
+            padding: 30px; 
+            justify-content: center;
+        }
+        .box { 
+            text-align: center; 
+            background: #333; 
+            padding: 10px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .box:hover {
+            transform: scale(1.1);
+        }
+        img { 
+            width: 80px; 
+            height: auto; 
+            border: 1px solid #555; 
+            display: block;
+            margin-bottom: 5px;
+        }
+        .label {
+            font-size: 12px;
+            font-weight: bold;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <script src="gen_flag_generator.js"></script>
+    <script>
+        const codes = CountryFlagGenerator.getAvailableCodes();
+        codes.forEach(code => {
+            const url = CountryFlagGenerator.generate(code);
+            document.body.innerHTML += `
+                <div class="box">
+                    <img src="${url}" alt="${code}">
+                    <div class="label">${code}</div>
+                </div>
+            `;
+        });
+
+        // Добавим пару случайных для теста сида
+        ['Stream', 'Gamer', 'Winner'].forEach(seed => {
+            const url = CountryFlagGenerator.generate(seed);
+            document.body.innerHTML += `
+                <div class="box" style="border: 1px solid #4CAF50;">
+                    <img src="${url}" alt="${seed}">
+                    <div class="label" style="color: #4CAF50;">Seed: ${seed}</div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

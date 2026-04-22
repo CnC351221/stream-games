@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gen_Mos — Превью</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: transparent;
+            /* Changed from #0f172a to blend in */
+            color: #faf5ff;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            overflow: hidden;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            /* Reduced from 14px */
+            padding: 12px;
+            /* Reduced from 24px */
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            width: 100%;
+        }
+
+        .card h2 {
+            font-size: 0.75rem;
+            /* Reduced from 0.9rem */
+            opacity: 0.5;
+            font-weight: 600;
+        }
+
+        #monster-img {
+            width: 96px;
+            /* Reduced from 128px */
+            height: 96px;
+            image-rendering: pixelated;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        #seed-label {
+            font-size: 0.6rem;
+            opacity: 0.3;
+        }
+
+        .btn {
+            padding: 6px 16px;
+            /* Reduced */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            background: rgba(168, 85, 247, 0.15);
+            color: #faf5ff;
+            font-size: 0.75rem;
+            /* Reduced */
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 700;
+        }
+
+        .btn:hover {
+            background: rgba(168, 85, 247, 0.35);
+            border-color: #a855f7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <img id="monster-img" src="" alt="Monster">
+        <span id="seed-label"></span>
+        <button class="btn" id="btn-gen">🎲 Генерировать</button>
+    </div>
+
+    <script src="gen_mos_generator.js"></script>
+    <script>
+        const img = document.getElementById('monster-img');
+        const label = document.getElementById('seed-label');
+
+        function gen() {
+            const seed = 'p_' + Math.random().toString(36).substr(2, 8);
+
+            let generator = window.MonsterGenerator;
+
+            // Пытаемся взять генератор из родительского окна для синхронизации настроек
+            try {
+                if (window.parent && window.parent.MonsterGenerator) {
+                    generator = window.parent.MonsterGenerator;
+                }
+            } catch (e) {
+                // Если нет доступа (например, Cross-Origin), используем локальный
+                console.warn('[Gen_Mos] Нет доступа к родительскому генератору, использую локальный.');
+            }
+
+            if (generator && typeof generator.generate === 'function') {
+                img.src = generator.generate(seed);
+            }
+            label.textContent = seed;
+        }
+
+        document.getElementById('btn-gen').addEventListener('click', gen);
+        gen();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+/**
+ * Gen_Grb — Генератор Грибов
+ */
+window.MODUL_REGISTRY.push({
+    id: 'Gen_Grb',
+    generator: window.Gen_GrbGenerator,
+    name: 'Генератор Грибов',
+    icon: '🍄',
+    description: 'Органические формы и узоры',
+    hasPreview: true,
+    settings: {
+        of_fill: {
+            label: 'Плотность (Fill)',
+            type: 'range',
+            min: 0.1,
+            max: 0.8,
+            step: 0.01,
+            value: 0.1,
+            default: 0.1
+        },
+        noise_gain: {
+            label: 'Шум формы',
+            type: 'range',
+            min: 0.1,
+            max: 1.0,
+            step: 0.05,
+            value: 0.5,
+            default: 0.5
+        },
+        color_noise: {
+            label: 'Шум цвета',
+            type: 'range',
+            min: 0.1,
+            max: 1.0,
+            step: 0.05,
+            value: 0.1,
+            default: 0.1
+        },
+        n_steps: {
+            label: 'Детализация (CA)',
+            type: 'range',
+            min: 1,
+            max: 10,
+            step: 1,
+            value: 1,
+            default: 1
+        },
+        n_colors: {
+            label: 'Кол-во цветов',
+            type: 'range',
+            min: 2,
+            max: 16,
+            step: 1,
+            value: 10,
+            default: 10
+        },
+        show_eyes: {
+            label: 'Глазки',
+            type: 'toggle',
+            value: true,
+            default: true
+        },
+        show_outline: {
+            label: 'Обводка',
+            type: 'toggle',
+            value: true,
+            default: true
+        }
+    }
+});

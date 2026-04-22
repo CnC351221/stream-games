@@ -1,0 +1,10 @@
+{
+    "id": "Gen_Flag",
+    "name": "Флаг-Генератор",
+    "description": "Модуль для отображения флагов стран",
+    "version": "1.0.0",
+    "icon": "🚩",
+    "files": [
+        "gen_flag_generator.js"
+    ]
+}

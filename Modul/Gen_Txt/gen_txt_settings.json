@@ -1,0 +1,10 @@
+{
+    "id": "Gen_Txt",
+    "name": "Текстовые Аватары",
+    "description": "Буква имени на цветном фоне",
+    "version": "1.0.0",
+    "icon": "🅰️",
+    "files": [
+        "gen_txt_generator.js"
+    ]
+}

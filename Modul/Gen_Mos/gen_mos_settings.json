@@ -1,0 +1,80 @@
+{
+    "name": "Генератор Монстриков",
+    "icon": "👾",
+    "description": "Универсальный генератор тел и лиц монстров",
+    "entry": "generator.js",
+    "hasPreview": true,
+    "params": {
+        "eyeShapes": {
+            "label": "Форма глаз",
+            "type": "part-grid",
+            "partType": "shape",
+            "count": 8,
+            "selected": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ]
+        },
+        "pupils": {
+            "label": "Зрачки",
+            "type": "part-grid",
+            "partType": "pupil",
+            "count": 8,
+            "selected": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ]
+        },
+        "mouths": {
+            "label": "Мимика",
+            "type": "part-grid",
+            "partType": "mouth",
+            "count": 8,
+            "selected": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ]
+        },
+        "colorfulEyes": {
+            "label": "Цветные глаза",
+            "type": "toggle",
+            "value": false
+        },
+        "doubleEyes": {
+            "label": "Количество глаз",
+            "type": "btn-group",
+            "options": [
+                {
+                    "value": 1,
+                    "label": "1"
+                },
+                {
+                    "value": 2,
+                    "label": "2"
+                }
+            ],
+            "selected": [
+                1,
+                2
+            ]
+        }
+    }
+}

@@ -1,0 +1,22 @@
+[
+    {
+        "id": "Gen_Mos",
+        "settingsFile": "Gen_Mos/gen_mos_settings.json"
+    },
+    {
+        "id": "Gen_Grb",
+        "settingsFile": "Gen_Grb/gen_grb_settings.json"
+    },
+    {
+        "id": "Gen_Ava",
+        "settingsFile": "Gen_Ava/gen_ava_settings.json"
+    },
+    {
+        "id": "Gen_Txt",
+        "settingsFile": "Gen_Txt/gen_txt_settings.json"
+    },
+    {
+        "id": "Gen_Flag",
+        "settingsFile": "Gen_Flag/gen_flag_settings.json"
+    }
+]

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Preview: Gen_Grb Generator</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            background: #222;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        canvas {
+            background: #000;
+            image-rendering: pixelated;
+            border: 1px solid #444;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            background: #a855f7;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #c084fc;
+        }
+
+        .seed {
+            font-family: monospace;
+            opacity: 0.5;
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="canvas-slot"></div>
+        <div class="seed" id="seed-label">seed: ...</div>
+        <div class="controls">
+            <button id="gen-btn">Генерировать 🎲</button>
+        </div>
+    </div>
+
+    <!-- Загружаем генератор -->
+    <script src="gen_grb_generator.js"></script>
+    <script>
+        const btn = document.getElementById('gen-btn');
+        const seedLab = document.getElementById('seed-label');
+        const slot = document.getElementById('canvas-slot');
+
+        function generate() {
+            const seed = Math.floor(Math.random() * 1000000);
+            seedLab.textContent = 'seed: ' + seed;
+
+            const dataUrl = Gen_GrbGenerator.generate(seed);
+
+            // Очищаем и добавляем картинку
+            slot.innerHTML = '';
+            const img = new Image();
+            img.src = dataUrl;
+            img.style.width = '300px';
+            img.style.height = '300px';
+            slot.appendChild(img);
+        }
+
+        btn.addEventListener('click', generate);
+        generate(); // Сразу при загрузке
+    </script>
+</body>
+
+</html>

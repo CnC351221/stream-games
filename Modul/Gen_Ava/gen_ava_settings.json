@@ -1,0 +1,10 @@
+{
+    "id": "Gen_Ava",
+    "name": "Аватар-Генератор",
+    "description": "Случайные стили аватаров для помощников",
+    "version": "1.0.0",
+    "icon": "🎭",
+    "files": [
+        "gen_ava_generator.js"
+    ]
+}
