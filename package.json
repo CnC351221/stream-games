@@ -31,15 +31,10 @@
       "category": "public.app-category.games",
       "icon": "Img/png/PeekH_512x512.png",
       "identity": null,
+      "hardenedRuntime": false,
       "target": [
-        {
-          "target": "dmg",
-          "arch": ["x64", "arm64"]
-        },
-        {
-          "target": "zip",
-          "arch": ["x64", "arm64"]
-        }
+        "dmg",
+        "zip"
       ]
     },
     "win": {
